@@ -4,11 +4,16 @@ import ContactList from "../Screens/ContactList";
 import ToDoList from "../Screens/ToDoList";
 import Home from "../Screens/ToDoList";
 import React from "react";
+
 const stack = createNativeStackNavigator();
 const Root = () => {
   return (
     <stack.Navigator>
-      <stack.Screen name={routes.Home} component={Home} />
+      {/* <stack.Screen
+        name={routes.Home}
+        component={Home}
+        options={{ headerTitle: "Home" }}
+      ></stack.Screen> */}
       <stack.Screen
         name={routes.ToDoList}
         component={ToDoList}

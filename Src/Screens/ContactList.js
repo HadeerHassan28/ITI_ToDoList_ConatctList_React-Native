@@ -2,6 +2,7 @@ import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { SectionList, Text, View, Image } from "react-native";
 import styles from "./ContactListStyle";
+
 const ContactList = () => {
   const contactData = [
     {
@@ -64,6 +65,7 @@ const ContactList = () => {
       ],
     },
   ];
+
   return (
     <SafeAreaView style={styles.container}>
       <SectionList
@@ -81,4 +83,5 @@ const ContactList = () => {
     </SafeAreaView>
   );
 };
+
 export default ContactList;

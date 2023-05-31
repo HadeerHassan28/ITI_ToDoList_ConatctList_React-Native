@@ -1,6 +1,6 @@
 const routes = Object.freeze({
+  Home: "Home",
   ContactList: "ContactList",
   ToDoList: "ToDoList",
-  Home: "Home",
 });
 export default routes;

@@ -1,7 +1,7 @@
 import { Platform, StyleSheet } from "react-native";
 export default StyleSheet.create({
   container: {
-    marginTop: Platform.OS === "android" ? 30 : 10,
+    marginTop: Platform.OS === "android" ? 30 : 0,
     padding: 15,
   },
   TextHeader: {

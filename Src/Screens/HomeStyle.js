@@ -11,5 +11,6 @@ const HomeStyle = StyleSheet.create({
     alignItems: "center",
     borderRadius: 5,
   },
+  text: { fontSize: 20, color: "white" },
 });
 export default HomeStyle;
