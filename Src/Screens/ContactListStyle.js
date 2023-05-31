@@ -18,4 +18,17 @@ export default StyleSheet.create({
     marginRight: 10,
     padding: 10,
   },
+  btn: {
+    width: 200,
+    height: 50,
+    backgroundColor: "#C0C0C0",
+    marginBottom: 20,
+    alignSelf: "center",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 19,
+  },
+  textBtn: {
+    fontSize: 30,
+  },
 });

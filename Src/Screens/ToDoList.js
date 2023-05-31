@@ -7,7 +7,12 @@ import Box from "../../component/Box/Bos";
 const ToDoList = () => {
   const [text, setText] = useState("");
   const [errMsg, seterrMsg] = useState("");
-  const [items, setItem] = useState("");
+  const [items, setItems] = useState([
+    { id: uuid, text: "Task 1" },
+    { id: uuid, text: "Task 2" },
+    { id: uuid, text: "Task 3" },
+    { id: uuid, text: "Task 4" },
+  ]);
 
   const handleChange = (value) => {
     setText(value);
@@ -19,13 +24,20 @@ const ToDoList = () => {
     else if (text.length < 3) seterrMsg("Please enter more than 3 characters");
     else {
       const newItem = {
+        id: uuid,
         text: text.trim(),
       };
-      setItem((prevItems) => [...prevItems, newItem]);
+      setItems((prevItems) => [...prevItems, newItem]);
       setText("");
       seterrMsg("");
     }
   };
+  const handleToggleDone = (itemId) => {};
+
+  const handleDelete = (itemId) => {
+    setItems((prevItems) => prevItems.filter((item) => item.id !== itemId));
+  };
+
   return (
     <SafeAreaView style={{ backgroundColor: "black" }}>
       <Text style={styles.title}>My ToDo List</Text>
@@ -43,16 +55,14 @@ const ToDoList = () => {
         </Pressable>
       </View>
       {errMsg !== "" && <Text style={styles.errMsg}>{errMsg}</Text>}
-      <FlatList
-        data={items}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <View>
-            <Text> {item.text} </Text>
-            <Box></Box>
-          </View>
-        )}
-      />
+      {items.map((item) => (
+        <Box
+          key={item.id}
+          task={item}
+          onToggleDone={() => handleToggleDone(item.id)}
+          onDelete={() => handleDelete(item.id)}
+        />
+      ))}
     </SafeAreaView>
   );
 };

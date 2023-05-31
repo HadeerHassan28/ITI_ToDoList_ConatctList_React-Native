@@ -1,38 +1,62 @@
-import React, { useState } from "react";
-import { CheckBox, Text, StyleSheet, View } from "react-native";
-const Box = () => {
-  const [isSelected, setSelection] = useState(false);
-  const schemelist = [{ title: "Done" }, { title: "Delate" }];
+import React from "react";
+import { Text, View, StyleSheet, Pressable } from "react-native";
+
+const Box = ({ task, onToggleDone, onDelete, itemid }) => {
   return (
     <View style={styles.container}>
-      {schemelist.map(({ title }) => (
-        <View>
-          <CheckBox
-            value={isSelected}
-            onValueChange={setSelection}
-            style={styles.checkbox}
-          />
-          <Text style={styles.label}>{title}</Text>
-        </View>
-      ))}
+      <Text style={styles.taskName}>{task.name}</Text>
+      <View style={styles.container}>
+        <Pressable
+          value={task.done}
+          onValueChange={onToggleDone}
+          style={styles.btn}
+        >
+          <Text style={styles.text}>Done</Text>
+        </Pressable>
+        <Pressable
+          value={false}
+          onValueChange={() => onDelete(itemid)}
+          style={styles.btn}
+        >
+          <Text style={styles.text}>Delate</Text>
+        </Pressable>
+      </View>
     </View>
   );
 };
+
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  checkboxContainer: {
     flexDirection: "row",
-    marginBottom: 20,
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingHorizontal: 10,
+    margin: 10,
+    marginTop: 20,
   },
-  checkbox: {
-    alignSelf: "center",
+  taskName: {
+    flex: 1,
+    fontSize: 16,
+    marginRight: 8,
+    color: "white",
   },
-  label: {
-    margin: 8,
+
+  btn: {
+    backgroundColor: "#ff1493",
+    borderWidth: 1,
+    borderColor: "white",
+    padding: 5,
+    borderRadius: 5,
+    marginHorizontal: 20,
+  },
+  text: {
+    color: "white",
+    fontSize: 20,
+  },
+  taskDone: {
+    textDecorationLine: "line-through",
+    color: "gray",
   },
 });
+
 export default Box;

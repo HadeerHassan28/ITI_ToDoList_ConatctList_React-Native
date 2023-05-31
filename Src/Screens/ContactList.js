@@ -1,7 +1,9 @@
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { SectionList, Text, View, Image } from "react-native";
+import { SectionList, Text, View, Image, Pressable } from "react-native";
 import styles from "./ContactListStyle";
+import routes from "../common/routes";
+import { useNavigation } from "@react-navigation/native";
 
 const ContactList = () => {
   const contactData = [
@@ -65,9 +67,12 @@ const ContactList = () => {
       ],
     },
   ];
-
+  const { navigate } = useNavigation();
   return (
     <SafeAreaView style={styles.container}>
+      <Pressable style={styles.btn} onPress={() => navigate(routes.ToDoList)}>
+        <Text style={styles.textBtn}>ToDo List</Text>
+      </Pressable>
       <SectionList
         sections={contactData}
         renderSectionHeader={(props) => (
