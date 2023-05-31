@@ -35,5 +35,18 @@ const ToDoListStyle = StyleSheet.create({
   },
   item: { color: "white" },
   errMsg: { color: "white", fontSize: 24, fontWeight: "bold" },
+  btn: {
+    width: 200,
+    height: 50,
+    backgroundColor: "#20b2aa",
+    marginBottom: 20,
+    alignSelf: "center",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 19,
+  },
+  textBtn: {
+    fontSize: 30,
+  },
 });
 export default ToDoListStyle;

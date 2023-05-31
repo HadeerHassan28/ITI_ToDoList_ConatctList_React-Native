@@ -14,15 +14,16 @@ const Root = () => {
         component={Home}
         options={{ headerTitle: "Home" }}
       ></stack.Screen> */}
-      {/* <stack.Screen
-        name={routes.ContactList}
-        component={ContactList}
-        options={{ headerTitle: "Contact List" }}
-      ></stack.Screen> */}
+
       <stack.Screen
         name={routes.ToDoList}
         component={ToDoList}
         options={{ headerTitle: "To Do List" }}
+      ></stack.Screen>
+      <stack.Screen
+        name={routes.ContactList}
+        component={ContactList}
+        options={{ headerTitle: "Contact List" }}
       ></stack.Screen>
     </stack.Navigator>
   );

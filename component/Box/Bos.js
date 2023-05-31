@@ -1,21 +1,23 @@
 import React from "react";
 import { Text, View, StyleSheet, Pressable } from "react-native";
 
-const Box = ({ task, onToggleDone, onDelete, itemid }) => {
+const Box = ({ task, onToggleDone, onDelete, id }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.taskName}>{task.name}</Text>
+      <Text style={[styles.taskName, task.done && styles.taskDone]}>
+        {task.text}
+      </Text>
       <View style={styles.container}>
         <Pressable
           value={task.done}
-          onValueChange={onToggleDone}
+          onPress={() => onToggleDone(id)}
           style={styles.btn}
         >
           <Text style={styles.text}>Done</Text>
         </Pressable>
         <Pressable
           value={false}
-          onValueChange={() => onDelete(itemid)}
+          onPress={() => onDelete(id)}
           style={styles.btn}
         >
           <Text style={styles.text}>Delate</Text>
@@ -36,9 +38,10 @@ const styles = StyleSheet.create({
   },
   taskName: {
     flex: 1,
-    fontSize: 16,
+    fontSize: 20,
     marginRight: 8,
     color: "white",
+    fontWeight: "bold",
   },
 
   btn: {

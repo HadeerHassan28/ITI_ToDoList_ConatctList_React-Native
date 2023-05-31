@@ -1,19 +1,21 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, Pressable, FlatList } from "react-native";
+import { View, Text, TextInput, Pressable, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import styles from "./ToDoListStyle";
-import { uuidv4 as uuid } from "uuid";
 import Box from "../../component/Box/Bos";
+import routes from "../common/routes";
+import { useNavigation } from "@react-navigation/native";
+import { v4 as uuid } from "uuid";
 const ToDoList = () => {
   const [text, setText] = useState("");
   const [errMsg, seterrMsg] = useState("");
   const [items, setItems] = useState([
-    { id: uuid, text: "Task 1" },
-    { id: uuid, text: "Task 2" },
-    { id: uuid, text: "Task 3" },
-    { id: uuid, text: "Task 4" },
+    { id: 1, text: "Task 1" },
+    { id: 2, text: "Task 2" },
+    { id: 3, text: "Task 3" },
+    { id: 4, text: "Task 4" },
   ]);
-
+  const { navigate } = useNavigation();
   const handleChange = (value) => {
     setText(value);
     seterrMsg("");
@@ -32,37 +34,57 @@ const ToDoList = () => {
       seterrMsg("");
     }
   };
-  const handleToggleDone = (itemId) => {};
+  const handleToggleDone = (id) => {
+    setItems((prevItems) =>
+      prevItems.map((item) => {
+        if (item.id === id) {
+          return {
+            ...item,
+            done: !item.done,
+          };
+        }
+        return item;
+      })
+    );
+  };
 
-  const handleDelete = (itemId) => {
-    setItems((prevItems) => prevItems.filter((item) => item.id !== itemId));
+  const handleDelete = (id) => {
+    setItems((prevItems) => prevItems.filter((item) => item.id !== id));
   };
 
   return (
-    <SafeAreaView style={{ backgroundColor: "black" }}>
-      <Text style={styles.title}>My ToDo List</Text>
-      <View style={styles.viewInput}>
-        <TextInput
-          style={styles.input}
-          value={text.toString()}
-          onChangeText={handleChange}
-          placeholder={"enter"}
-          editable
-        ></TextInput>
+    <SafeAreaView style={{ backgroundColor: "black", flex: 1 }}>
+      <Pressable
+        style={styles.btn}
+        onPress={() => navigate(routes.ContactList)}
+      >
+        <Text style={styles.textBtn}>Contact List</Text>
+      </Pressable>
+      <ScrollView>
+        <Text style={styles.title}>My ToDo List</Text>
+        <View style={styles.viewInput}>
+          <TextInput
+            style={styles.input}
+            value={text.toString()}
+            onChangeText={handleChange}
+            placeholder={"enter"}
+            editable
+          ></TextInput>
 
-        <Pressable style={styles.button} onPress={handleAdd}>
-          <Text style={styles.text}>Add</Text>
-        </Pressable>
-      </View>
-      {errMsg !== "" && <Text style={styles.errMsg}>{errMsg}</Text>}
-      {items.map((item) => (
-        <Box
-          key={item.id}
-          task={item}
-          onToggleDone={() => handleToggleDone(item.id)}
-          onDelete={() => handleDelete(item.id)}
-        />
-      ))}
+          <Pressable style={styles.button} onPress={handleAdd}>
+            <Text style={styles.text}>Add</Text>
+          </Pressable>
+        </View>
+        {errMsg !== "" && <Text style={styles.errMsg}>{errMsg}</Text>}
+        {items.map((item) => (
+          <Box
+            key={item.id}
+            task={item}
+            onToggleDone={() => handleToggleDone(item.id)}
+            onDelete={() => handleDelete(item.id)}
+          />
+        ))}
+      </ScrollView>
     </SafeAreaView>
   );
 };
