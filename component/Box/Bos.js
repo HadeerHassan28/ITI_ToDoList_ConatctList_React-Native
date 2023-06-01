@@ -7,7 +7,7 @@ const Box = ({ task, onToggleDone, onDelete, id }) => {
       <Text style={[styles.taskName, task.done && styles.taskDone]}>
         {task.text}
       </Text>
-      <View style={styles.container}>
+      <View style={styles.doneDelate}>
         <Pressable
           value={task.done}
           onPress={() => onToggleDone(id)}
@@ -29,6 +29,17 @@ const Box = ({ task, onToggleDone, onDelete, id }) => {
 
 const styles = StyleSheet.create({
   container: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingHorizontal: 10,
+    margin: 10,
+    marginTop: 20,
+    borderWidth: 3,
+    borderColor: "#ff1493",
+    borderRadius: 20,
+  },
+  doneDelate: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
