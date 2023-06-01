@@ -7,13 +7,14 @@ const ToDoListStyle = StyleSheet.create({
     color: "#ff1493",
   },
   button: {
-    borderRadius: 5,
+    borderRadius: 20,
     alignContent: "center",
   },
   text: {
     fontSize: 20,
     color: "white",
     backgroundColor: "#ff1493",
+    padding: 5,
   },
   input: {
     flex: 1,
@@ -38,15 +39,18 @@ const ToDoListStyle = StyleSheet.create({
   btn: {
     width: 200,
     height: 50,
-    backgroundColor: "#20b2aa",
+    backgroundColor: "black",
     marginBottom: 20,
     alignSelf: "center",
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 19,
+    borderColor: "#ff1493",
+    borderWidth: 3,
   },
   textBtn: {
     fontSize: 30,
+    color: "#ff1493",
   },
 });
 export default ToDoListStyle;
