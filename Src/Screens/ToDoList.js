@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, Pressable, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  Pressable,
+  ScrollView,
+  TouchableOpacity,
+  TouchableHighlight,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import styles from "./ToDoListStyle";
 import Box from "../../component/Box/Bos";
@@ -54,12 +62,14 @@ const ToDoList = () => {
 
   return (
     <SafeAreaView style={{ backgroundColor: "black", flex: 1 }}>
-      <Pressable
+      <TouchableHighlight
+        activeOpacity={0.6}
+        underlayColor="#ff1493"
         style={styles.btn}
         onPress={() => navigate(routes.ContactList)}
       >
         <Text style={styles.textBtn}>Contact List</Text>
-      </Pressable>
+      </TouchableHighlight>
       <ScrollView>
         <Text style={styles.title}>My ToDo List</Text>
         <View style={styles.viewInput}>
